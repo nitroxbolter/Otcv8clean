@@ -77,8 +77,8 @@ function onReceiveInfo(buffer)
 				addItem.quant = item.quant
 				addItem.price = item.price
 				addItem.look = item.look
-				addItem:setItemRarity(item.rarity)
-				addItem:updateItemRarity()
+				-- addItem:setItemRarity(item.rarity)
+				-- addItem:updateItemRarity()
 			end
 		end
 
