@@ -1,0 +1,209 @@
+
+
+OptionPanel
+  
+  OptionContainer
+    height: 30
+    padding: 5
+    layout:
+      type: horizontalBox
+      spacing: 5
+
+    Label
+      margin-top: 7
+      color: #c0c0c0
+      font: verdana-11px-monochrome
+      !text: tr("Layout (requries client restart)")
+      $mobile:
+        visible: false
+
+    ComboBox
+      id: layout
+      width: 200
+      $mobile:
+        visible: false
+      @onOptionChange: modules.client_options.presetOption(self, self:getId(), self:getCurrentOption().text)
+      @onSetup: |
+        self:addOption("Default")
+        for _, file in ipairs(g_resources.listDirectoryFiles("/layouts", false, true)) do
+          if g_resources.directoryExists("/layouts/" .. file) then
+            self:addOption(file:gsub("^%l", string.upper))
+          end
+        end
+
+  Panel
+    height: 40
+    margin-top: 3
+    
+    Label
+      width: 90
+      anchors.left: parent.left
+      anchors.top: parent.top
+      id: leftPanelsLabel
+      !text: tr("Left panels")
+
+    Label
+      width: 90
+      anchors.left: prev.right
+      anchors.top: prev.top
+      id: rightPanelsLabel
+      !text: tr("Right panels")
+
+    Label
+      width: 130
+      anchors.left: prev.right
+      anchors.top: prev.top
+      id: backpackPanelLabel
+      !text: tr("Container's panel")
+      !tooltip: tr("Open new containers in selected panel")
+
+    ComboBox
+      id: leftPanels
+      anchors.left: leftPanelsLabel.left
+      anchors.right: leftPanelsLabel.right
+      anchors.top: leftPanelsLabel.bottom
+      margin-top: 3
+      margin-right: 20
+      @onOptionChange: modules.client_options.presetOption(self, self:getId(), self.currentIndex)
+      @onSetup: |
+        self:addOption("0")
+        self:addOption("1")
+        self:addOption("2")
+        self:addOption("3")
+        self:addOption("4")
+
+    ComboBox
+      id: rightPanels
+      anchors.left: rightPanelsLabel.left
+      anchors.right: rightPanelsLabel.right
+      anchors.top: rightPanelsLabel.bottom
+      margin-top: 3
+      margin-right: 20
+      @onOptionChange: modules.client_options.presetOption(self, self:getId(), self.currentIndex)
+      @onSetup: |
+        self:addOption("1")
+        self:addOption("2")
+        self:addOption("3")
+        self:addOption("4")
+
+    ComboBox
+      id: containerPanel
+      anchors.left: backpackPanelLabel.left
+      anchors.right: backpackPanelLabel.right
+      anchors.top: backpackPanelLabel.bottom
+      margin-top: 3
+      @onOptionChange: modules.client_options.presetOption(self, self:getId(), self.currentIndex)
+      @onSetup: |
+        self:addOption("1st left panel")
+        self:addOption("2nd left panel")
+        self:addOption("3rd left panel")
+        self:addOption("4th left panel")
+        self:addOption("1st right panel")
+        self:addOption("2nd right panel")
+        self:addOption("3rd right panel")
+        self:addOption("4th right panel")
+
+  FlatPanel
+    margin-top: 5
+    padding: 5
+    layout:
+      type: verticalBox
+      fit-children: true
+      spacing: 8
+
+    Panel
+      height: 14
+      layout:
+        type: horizontalBox
+      
+      Label
+        font: verdana-11px-monochrome
+        !text: tr("Show Bottom Action Bars:")
+        width: 155
+
+      OptionSimpleCheckBox
+        id: actionbar1
+        !text: tr('Bar 1')
+        margin-top: 2
+
+      OptionSimpleCheckBox
+        id: actionbar2
+        !text: tr('Bar 2')
+        margin-top: 2
+        margin-left: 10
+
+      OptionSimpleCheckBox
+        id: actionbar3
+        !text: tr('Bar 3')
+        margin-top: 2
+        margin-left: 10
+
+    Panel
+      height: 14
+      layout:
+        type: horizontalBox
+
+      $mobile:
+        visible: false
+      
+      Label
+        font: verdana-11px-monochrome
+        !text: tr("Show Left Action Bars:")
+        width: 155
+
+      OptionSimpleCheckBox
+        id: actionbar4
+        !text: tr('Bar 1')
+        margin-top: 2
+
+      OptionSimpleCheckBox
+        id: actionbar5
+        !text: tr('Bar 2')
+        margin-top: 2
+        margin-left: 10
+
+      OptionSimpleCheckBox
+        id: actionbar6
+        !text: tr('Bar 3')
+        margin-left: 10
+
+    Panel
+      height: 14
+      layout:
+        type: horizontalBox
+      
+      $mobile:
+        visible: false
+      
+      Label
+        font: verdana-11px-monochrome
+        !text: tr("Show Right Action Bars:")
+        width: 155
+      
+      OptionSimpleCheckBox
+        id: actionbar7
+        !text: tr('Bar 1')
+        margin-top: 2
+
+      OptionSimpleCheckBox
+        id: actionbar8
+        !text: tr('Bar 2')
+        margin-left: 10
+
+      OptionSimpleCheckBox
+        id: actionbar9
+        !text: tr('Bar 3')
+        margin-top: 2
+        margin-left: 10
+
+  Panel
+    height: 30
+    margin-top: 5
+
+    Button
+      id: changeLocale
+      !text: tr('Change language')
+      @onClick: modules.client_locales.createWindow()
+      anchors.top: parent.top
+      anchors.left: parent.left
+      width: 150
