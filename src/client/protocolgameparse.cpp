@@ -3433,9 +3433,13 @@ CreaturePtr ProtocolGame::getCreature(const InputMessagePtr& msg, int type)
                 msg->getU32(); // master
 
             std::string name = g_game.formatCreatureName(msg->getString());
+            std::string marketDescription = msg->getString();
 
             if (creature) {
                 creature->setName(name);
+                if (marketDescription != "") {
+                    creature->setText(marketDescription, Color::white);
+                }
             } else {
                 if (id == m_localPlayer->getId())
                     creature = m_localPlayer;
@@ -3457,6 +3461,9 @@ CreaturePtr ProtocolGame::getCreature(const InputMessagePtr& msg, int type)
                 if (creature) {
                     creature->setId(id);
                     creature->setName(name);
+                if (marketDescription != "") {
+                    creature->setText(marketDescription, Color::white);
+                }
 
                     g_map.addCreature(creature);
                 }
