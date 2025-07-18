@@ -214,7 +214,7 @@ MainWindow
       id: okBtnStart
       anchors.bottom: parent.bottom
       anchors.left: parent.left
-      margin: 0 0 0 50
+      margin: 0 0 0 5
       text: Ok
       @onClick: modules.game_marketing.startButton()
 
@@ -222,7 +222,7 @@ MainWindow
       id: cancelBtnStart
       anchors.bottom: parent.bottom
       anchors.right: parent.right
-      margin: 0 50 0 0
+      margin: 0 5 0 0
       text: Cancel
       @onClick: self:getParent():hide()
 
@@ -245,7 +245,6 @@ MainWindow
       id: descOK
       anchors.bottom: parent.bottom
       anchors.left: parent.left
-      margin: 0 0 0 50
       text: Ok
       @onClick: self:getParent():hide()
 
@@ -253,7 +252,6 @@ MainWindow
       id: descCancel
       anchors.bottom: parent.bottom
       anchors.right: parent.right
-      margin: 0 50 0 0
       text: Cancel
       @onClick: | 
         self:getParent():getChildById('descEdit'):setText("")
@@ -279,7 +277,7 @@ MainWindow
       id: buyOK
       anchors.bottom: parent.bottom
       anchors.left: parent.left
-      margin: 0 0 0 50
+      margin: 0 0 0 5
       text: Ok
       @onClick: modules.game_marketing.buyButton()
 
@@ -287,7 +285,7 @@ MainWindow
       id: buyCancel
       anchors.bottom: parent.bottom
       anchors.right: parent.right
-      margin: 0 50 0 0
+      margin: 0 5 0 0
       text: Cancel
       @onClick: self:getParent():hide()
 
