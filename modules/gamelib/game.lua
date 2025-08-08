@@ -1,3 +1,27 @@
+function g_game.updateRarityFrames(widget, id)
+  local rarityId = widget:getChildById("rarityId")
+  if id == 0 then
+    rarityId:hide()
+    return true
+  end
+
+  rarityId:setImageClip(((id - 1) * 38) .. " 0 32 32")
+  rarityId:show()
+end
+
+OR, XOR, AND = 1, 3, 4
+
+function g_game.bitoper(a, b, oper)
+    local r, m, s = 0, 2 ^ 31
+    repeat
+        s, a, b = a + b + m, a % m, b % m
+        r, m = r + m * oper % (s - a - b), m / 2
+    until m < 1
+    return r ~= 0
+end
+
+
+
 function g_game.getRsa()
   return G.currentRsa
 end

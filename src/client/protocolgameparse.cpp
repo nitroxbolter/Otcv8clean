@@ -3634,6 +3634,9 @@ ItemPtr ProtocolGame::getItem(const InputMessagePtr& msg, int id, bool hasDescri
             item->setCustomAttribute(key, value);
         }
     }
+    item->setRarityId(msg->getU8());
+    return item;
+    
 
     if (g_game.getFeature(Otc::GameDisplayItemDuration)) {
         bool hasDuration = msg->getU8() == 1;

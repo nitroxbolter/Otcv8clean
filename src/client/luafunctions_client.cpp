@@ -694,6 +694,7 @@ void Client::registerLuaFunctions()
     g_lua.bindClassMemberFunction<Item>("getShader", &Item::getShader);
     g_lua.bindClassMemberFunction<Item>("setCustomAttribute", &Item::setCustomAttribute);
     g_lua.bindClassMemberFunction<Item>("getCustomAttribute", &Item::getCustomAttribute);
+    g_lua.bindClassMemberFunction<Item>("getRarityId", &Item::getRarityId);
     g_lua.bindClassMemberFunction<Item>("getShowCount", &Item::getShowCount);
 	g_lua.bindClassMemberFunction<Item>("setShowCount", &Item::setShowCount);
 

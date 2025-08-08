@@ -169,6 +169,13 @@ public:
     const ThingTypePtr& getThingType();
     ThingType *rawGetThingType();
 
+     void setRarityId(uint8 rarityId) {
+        m_rarityId = rarityId;
+    }
+    uint8 getRarityId() {
+        return m_rarityId;
+    }
+
     void setCustomAttribute(uint16 key, uint64 value) {
         m_customAttribs.set(key, value);
     }
@@ -196,6 +203,7 @@ private:
 
     uint32 m_quickLootFlags;
     uint8 m_phase;
+    uint8 m_rarityId;
     ticks_t m_lastPhase;
 
     uint64 m_durationTime;

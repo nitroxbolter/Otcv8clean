@@ -244,6 +244,7 @@ function onInventoryChange(player, slot, item, oldItem)
     itemWidget:setStyle(InventorySlotStyles[slot])
     itemWidget:setItem(nil)
   end
+  g_game.updateRarityFrames(itemWidget, item and item:getRarityId() or 0)
 end
 
 function onBlessingsChange(player, blessings, oldBlessings)

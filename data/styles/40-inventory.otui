@@ -1,6 +1,12 @@
 InventoryItem < Item
   $on:
     image-source: /images/ui/item-blessed
+  UIWidget
+    id: rarityId
+    anchors.fill: parent
+    image-source: /images/rarity/rarity_frames
+    phantom: true
+    visible: false
 
 HeadSlot < InventoryItem
   id: slot1

@@ -4,12 +4,13 @@ function init()
   connect(Container, { onOpen = onContainerOpen,
                        onClose = onContainerClose,
                        onSizeChange = onContainerChangeSize,
-                       onUpdateItem = onContainerUpdateItem })
+                       onUpdateItem = onContainerUpdateItem,
+                       onUpdate = onContainersUpdate })
   connect(g_game, {
     onGameStart = markStart,
     onGameEnd = clean
   })
-
+  g_ui.importStyle('containers')
   reloadContainers()
 end
 
@@ -17,11 +18,16 @@ function terminate()
   disconnect(Container, { onOpen = onContainerOpen,
                           onClose = onContainerClose,
                           onSizeChange = onContainerChangeSize,
-                          onUpdateItem = onContainerUpdateItem })
-  disconnect(g_game, { 
+                          onUpdateItem = onContainerUpdateItem,
+                          onUpdate = onContainersUpdate })
+  disconnect(g_game, {
     onGameStart = markStart,
     onGameEnd = clean
   })
+  function onContainersUpdate(container)
+    if not container.window then return end
+    refreshContainerItems(container)
+  end
 end
 
 function reloadContainers()
@@ -52,7 +58,9 @@ end
 function refreshContainerItems(container)
   for slot=0,container:getCapacity()-1 do
     local itemWidget = container.itemsPanel:getChildById('item' .. slot)
-    itemWidget:setItem(container:getItem(slot))
+    local item = container:getItem(slot)
+    itemWidget:setItem(item)
+    g_game.updateRarityFrames(itemWidget, item and item:getRarityId() or 0)
   end
 
   if container:hasPages() then
@@ -180,11 +188,13 @@ function onContainerOpen(container, previousContainer)
 
   containerPanel:destroyChildren()
   for slot=0,container:getCapacity()-1 do
-    local itemWidget = g_ui.createWidget('Item', containerPanel)
+    local itemWidget = g_ui.createWidget('ContainerItem', containerPanel)
+    local item = container:getItem(slot)
     itemWidget:setId('item' .. slot)
-    itemWidget:setItem(container:getItem(slot))
+    itemWidget:setItem(item)
     itemWidget:setMargin(0)
     itemWidget.position = container:getSlotPosition(slot)
+    g_game.updateRarityFrames(itemWidget, item and item:getRarityId() or 0)
 
     if not container:isUnlocked() then
       itemWidget:setBorderColor('red')
@@ -230,4 +240,5 @@ function onContainerUpdateItem(container, slot, item, oldItem)
   if not container.window then return end
   local itemWidget = container.itemsPanel:getChildById('item' .. slot)
   itemWidget:setItem(item)
+  g_game.updateRarityFrames(itemWidget, item and item:getRarityId() or 0)
 end

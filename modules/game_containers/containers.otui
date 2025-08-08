@@ -1,0 +1,16 @@
+ContainerItem < Item
+  UIWidget
+    id: lootCategoryId
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    image-source: icons
+    size: 19 19
+    phantom: true
+    visible: false
+
+  UIWidget
+    id: rarityId
+    anchors.fill: parent
+    image-source: /images/rarity/rarity_frames
+    phantom: true
+    visible: false
