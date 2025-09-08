@@ -1,0 +1,69 @@
+LookItemName < UILabel
+  phantom: true
+  font: verdana-14px-rounded
+  text-align: center
+  text-wrap: true
+  max-width: 200
+  color: white
+  margin-top: 4
+
+TooltipSeparator < UIWidget
+  image-source: /images/tooltip/tooltip_separator
+  height: 2
+  margin-top: 4
+  margin-left: 7
+  margin-right: 7
+
+LookItemIconAttribute < UIWidget
+  font: verdana-11px-rounded
+  phantom: true
+  height: 22
+  margin-top: 4
+  text-align: center
+
+  UIWidget
+    id: icon
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: icons
+    phantom: true
+    margin-left: 7
+    size: 19 19
+
+  UILabel
+    id: label
+    anchors.left: icon.right
+    anchors.right: parent.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 5
+    text-wrap: true
+    color: white
+
+UIMiniWindow
+  id: tooltipWindow
+  focusable: false
+  phantom: true
+  
+  UIWidget
+    anchors.fill: parent
+    image-source: /images/tooltip/tooltip_frame
+    phantom: true
+    
+  Item
+    id: item
+    anchors.top: parent.top
+    anchors.horizontalcenter: parent.horizontalcenter
+    margin-top: 7
+    image-source: /images/tooltip/item_phantom
+    
+
+  ScrollablePanel
+    id: list
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: item.bottom
+    anchors.bottom: parent.bottom
+    margin-left: 6
+    margin-right: 6
+    layout:
+      type: verticalBox

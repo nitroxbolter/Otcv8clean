@@ -1,0 +1,12 @@
+Module
+  name: game_tooltip
+  description: Displays item attributes
+  author: Oskar - Modified by Alex
+  website: None
+  scripts: [ game_tooltip ]
+  
+  sandboxed: true
+  autoload: true
+  
+  @onLoad: onLoad()
+  @onUnload: onUnLoad()

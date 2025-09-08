@@ -1,3 +1,5 @@
 EnterGameWindow < StaticMainWindow
   !text: tr('Enter Game')
   size: 260 354
+  anchors.left: parent.left
+  margin-right: 480

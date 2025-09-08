@@ -2,6 +2,7 @@ StaticMainWindow
   id: updaterWindow
   !text: tr('Updater')
   width: 350
+  image-source: /images/update
 
   layout:
     type: verticalBox
@@ -15,7 +16,7 @@ StaticMainWindow
   ProgressBar
     id: mainProgress
     height: 15
-    background-color: #4444ff
+    background-color: #07b00a
     margin-bottom: 5
     margin-top: 5
 
